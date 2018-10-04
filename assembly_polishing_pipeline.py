@@ -176,22 +176,22 @@ def main( arguments ):
 		os.makedirs( cluster_prefix )
 	
 	# --- script locations --- #	#=> could be replaced by config file
-	adapter_clipper_script = "/vol/gf-arabseq/project_Ath-Nd1/members/bpucker/ca_stuff/genome_assemblies/assembly_polishing/adapter_clipping.py"
-	adapter_file = "/vol/gf-arabseq/project_Ath-Nd1/members/bpucker/ca_stuff/genome_assemblies/assembly_polishing/illumina_adaptors_collapsed.fasta"
-	remove_short_and_low_complex_seq_script = "/vol/gf-arabseq/project_Ath-Nd1/members/bpucker/ca_stuff/genome_assemblies/assembly_polishing/purging_short_sequences.py"
-	remove_non_plant_seqs_script = "/vol/gf-arabseq/project_Ath-Nd1/members/bpucker/ca_stuff/genome_assemblies/assembly_polishing/remove_non_plant_sequences.py"
-	pan_genome_file = "/vol/cluster-data/bpucker/ca/assembly_polishing/ref_genomes/caryophyllales_pan_genome.fasta"
-	bwa_wrapper_script = "/vol/cluster-data/bpucker/bin/scripts/BWA_MEM_wrapper.py"
-	reapr = "/vol/biotools/bin/reapr"
-	sort_on_ref_script = "/vol/gf-arabseq/project_Ath-Nd1/members/bpucker/ca_stuff/genome_assemblies/assembly_polishing/sort_contigs_on_refbeet.py"
-	refbeet_file = "/prj/gf-gabibeet/data/Assemblies/RefBeet/RefBeet-1.5/RefBeet-1.5.v20160810.fa"
-	organel_cleaner_script = "/vol/gf-arabseq/project_Ath-Nd1/members/bpucker/ca_stuff/genome_assemblies/assembly_polishing/organel_cleaning.py"
+	adapter_clipper_script = "adapter_clipping.py"
+	adapter_file = "illumina_adaptors_collapsed.fasta"	#FASTA file with all illumina adapters
+	remove_short_and_low_complex_seq_script = "purging_short_sequences.py"
+	remove_non_plant_seqs_script = "remove_non_plant_sequences.py"
+	pan_genome_file = "pan_genome.fasta"	#FASTA file with all genome assemblies of closely related species (white list)
+	bwa_wrapper_script = "BWA_MEM_wrapper.py"
+	reapr = "reapr"
+	sort_on_ref_script = "sort_contigs_on_ref.py"
+	refbeet_file = "reference.fa"	#genome sequence of reference genome for (super-)scaffolding
+	organel_cleaner_script = "organel_cleaning.py"
 	
-	repeat_masker = "/vol/cluster-data/bpucker/bin/RepeatMasker/RepeatMasker"
-	infernal_script = "/vol/gf-arabseq/project_Ath-Nd1/members/bpucker/ca_stuff/genome_assemblies/assembly_polishing/run_INFERNAL_on_cluster.py"
-	STAR_script = "/vol/cluster-data/bpucker/bv_gene_prediction/reads2counts_PE_mod.py"
-	AUGUSTUS_script = "/prj/gf-resmabs/members/bpucker/scripts/AUGUSTUS_hint_wrapper.py"
-	bv_prot_file = "/prj/gf-gabibeet/members/Boas/20160825_protein_comparison/BeetSet-2.genes.1408.pep.fasta"
+	repeat_masker = "RepeatMasker"
+	infernal_script = "run_INFERNAL_on_cluster.py"
+	STAR_script = "reads2counts_PE_mod.py"
+	AUGUSTUS_script = "AUGUSTUS_hint_wrapper.py"
+	bv_prot_file = "reference_representative_peptides.fasta"	#FASTA file with representative peptide sequences of a reference
 	
 	
 	# --- load config file --- #
@@ -270,11 +270,11 @@ def main( arguments ):
 		cmd = remove_organel_seqs( clean_assembly_file, output_dir, cleaned_assembly_file, organel_cleaner_script, config['organel'] )
 		doc.write( cmd + '\n\n' )
 		t6b = datetime.now()
-		doc.write( str( t6b-t6 ) + '\n\nSorting on RefBeet 1.5 ...\n' )
+		doc.write( str( t6b-t6 ) + '\n\nSorting on reference ...\n' )
 		
 		
 		# --- sort on RefBeet 1.5 --- #
-		output_dir = final_prefix + "sorting_on_refbeet/"
+		output_dir = final_prefix + "sorting_on_reference/"
 		if not os.path.exists( output_dir ):
 			os.makedirs( output_dir )
 		name_mapping_table = output_dir + "contig_name_mapping_table.txt"
