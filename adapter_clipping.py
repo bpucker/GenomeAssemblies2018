@@ -1,13 +1,13 @@
 ### Boas Pucker ###
 ### bpucker@cebitec.uni-bielefeld.de ###
-
+### v0.1 ###
 
 __usage__ = """
 					python adapter_clipping.py\n
 					--assembly_file <FULL_PATH_TO_FASTA_FILE>
 					--output_dir <FULL_PATH_TO_OUTPUT_DIRECTORY>
 					
-					--adapter_file <FULL_PATH_TO_FASTA_FILE> (optional)
+					--adapter_file <FULL_PATH_TO_FASTA_FILE> (optional if hard coded)
 					
 					bug reports and feature requests: bpucker@cebitec.uni-bielefeld.de
 					"""
@@ -105,7 +105,7 @@ def main( arguments ):
 	if '--adapter_file' in arguments:
 		adapter_file = arguments[ arguments.index( '--adapter_file' )+1 ]
 	else:
-		adapter_file = "/grp/gf/bin/bpucker/Trimmomatic-0.36/Illumina_adapters.v4.fa"
+		adapter_file = "Illumina_adapters.fa"	### ADD YOUR FILE HERE ###
 		
 	blast_result_file = output_dir + "illumina_adapters_vs_assembly.txt"
 	blast_db = output_dir + "blast_db"
