@@ -1,5 +1,6 @@
 # GenomeAssemblies2018
-all scripts involved in the genome assembly and investigation process
+
+Scripts involved in the genome assembly and investigation process.
 
 
 
@@ -62,3 +63,5 @@ This pipeline takes a raw genome sequence assembly (FASTA) and runs all processi
 
 
 
+# Reference
+Boas Pucker, Tao Feng, Samuel Brockington. Next generation sequencing to investigate genomic diversity in Caryophyllales. bioRxiv 646133; doi: https://doi.org/10.1101/646133 
